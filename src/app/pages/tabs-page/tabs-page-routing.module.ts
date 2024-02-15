@@ -63,7 +63,16 @@ const routes: Routes = [
         pathMatch: 'full'
       }
     ]
-  }
+  },
+  {
+    path: 'branches',
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('../branch/branch.module').then(m => m.BranchModule)
+      }
+    ]
+  },
 ];
 
 @NgModule({

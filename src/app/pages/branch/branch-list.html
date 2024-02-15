@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Branches</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let branch of branches; let i = index">
+      <ion-label>
+        <h2>{{ branch.owner }}/{{ branch.repo }}: {{ branch.branch }}</h2>
+        <p>SHA: {{ branch.sha }}</p>
+      </ion-label>
+      <ion-button fill="clear" (click)="deleteBranch(branch)">
+        <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+  <!-- Floating Action Button for Adding a New Branch -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="addBranch()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
