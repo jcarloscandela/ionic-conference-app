@@ -3,6 +3,7 @@ export interface Branch {
   repo: string;
   branch: string;
   sha?: string; 
+  commitDate?: string;
   lastUpdated?: string;
 }
 

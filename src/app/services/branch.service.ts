@@ -38,7 +38,9 @@ export class BranchService {
       if (branchInfo.commit.sha !== branches[index].sha) {
         // The SHA from GitHub is different from our stored SHA, update the branch
         branches[index].sha = branchInfo.commit.sha;
-        branches[index].lastUpdated = branchInfo.commit.commit.author.date;
+        branches[index].commitDate = branchInfo.commit.commit.author.date;
+        branches[index].lastUpdated = new Date().toISOString();
+
         await this.storage.set(this.branchesKey, JSON.stringify(branches));
         await this.showInfoToast('Branch updated successfully.');
       } else {
@@ -49,7 +51,9 @@ export class BranchService {
     } else {
       // The branch does not exist in our storage, add it as a new branch
       branch.sha = branchInfo.commit.sha;
-      branch.lastUpdated = branchInfo.commit.commit.author.date;
+      branch.commitDate = branchInfo.commit.commit.author.date;
+      branch.lastUpdated = new Date().toISOString();
+
       branches.push(branch);
       await this.storage.set(this.branchesKey, JSON.stringify(branches));
       await this.showInfoToast('Branch added successfully.');

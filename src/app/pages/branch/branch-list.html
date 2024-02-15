@@ -1,26 +1,41 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>Branches</ion-title>
+  <ion-buttons slot="end">
+    <ion-button (click)="addBranch()">
+      <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+    </ion-button>
+  </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item *ngFor="let branch of branches; let i = index">
-      <ion-label>
-        <h2>{{ branch.owner }}/{{ branch.repo }}: {{ branch.branch }}</h2>
-        <p>SHA: {{ branch.sha }}</p>
-      </ion-label>
-      <ion-button fill="clear" (click)="deleteBranch(branch)">
-        <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
-      </ion-button>
-    </ion-item>
-  </ion-list>
-
-  <!-- Floating Action Button for Adding a New Branch -->
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="addBranch()">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+  <ion-grid>
+    <ion-row>
+      <ion-col size-xs="12" size-sm="6" size-md="4" size-lg="4" size-xl="3" *ngFor="let branch of branches; let i = index">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>{{ branch.owner }}/{{ branch.repo }}</ion-card-title>
+            <ion-card-subtitle>{{ branch.branch }}</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-chip color="secondary">
+              <ion-icon name="git-branch-outline"></ion-icon>
+              <ion-label>SHA: {{ branch.sha | truncate: 14 }} </ion-label>
+            </ion-chip>
+            <p>Last Commit: {{ branch.commitDate | date:'short' }}</p>
+            <p>Last Updated: {{ branch.lastUpdated | date:'medium' }}</p>
+          </ion-card-content>
+          <ion-row>
+            <ion-col size="12">
+              <ion-button expand="block" fill="outline" color="danger" (click)="deleteBranch(branch)">
+                <ion-icon slot="start" name="trash-outline"></ion-icon>
+                Delete
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

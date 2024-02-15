@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { BranchListPage } from './branch-list';
 import { RouterModule, Routes } from '@angular/router';
+import { PipesModule } from '../../pipes/pipes.module';
 
 const routes: Routes = [
     {
@@ -21,7 +22,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     IonicModule,
-    BranchRoutingModule
+    BranchRoutingModule,
+    PipesModule
   ],
   declarations: [BranchListPage],
 })

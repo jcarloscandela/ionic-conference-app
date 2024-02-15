@@ -4,8 +4,7 @@ import { Branch } from '../../interfaces/branch';
 
 @Component({
   selector: 'page-branch-list',
-  templateUrl: 'branch-list.html',
-  styleUrls: ['./branch-list.scss'],
+  templateUrl: 'branch-list.html'
 })
 export class BranchListPage {
   branches: Branch[] = [];
